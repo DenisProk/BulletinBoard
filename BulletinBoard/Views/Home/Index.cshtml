@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Доска объявлений";
+}
+
+@model IEnumerable<BulletinBoard.Models.Ad>
+
+<h2>Всего объявленией: @ViewBag.countAd</h2>
+<a class="btn btn-default" href="@Url.Action("Create")">Добавить объявление</a>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        @foreach (BulletinBoard.Models.Ad b in Model)
+        {
+            <h2>@b.Type: <a href="@Url.Action("View", new { id = b.Id })">@b.Title</a></h2>
+            <p>@(b.Text.IsEmpty() ? "Нет описания" : b.Text)</p>
+
+            <p>@Html.DisplayNameFor(c => c.ContactPhone): @b.ContactPhone</p>
+            <hr>
+        }
+    </div>
+</div>

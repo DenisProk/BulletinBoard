@@ -1,0 +1,37 @@
+﻿@model BulletinBoard.Models.Ad
+
+@{
+    ViewBag.Title = "Просмотр";
+}
+
+<h2>Объявление №  @Html.DisplayFor(model => model.Id) </h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Type): @Html.DisplayFor(model => model.Title)</h4>
+    @Html.ActionLink("Редактировать", "Update", new { id = Model.Id }, new { @class = "btn btn-default" })
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPhone)
+        </dd>
+
+    </dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(Model => Model.Id)
+    <p><input class="btn btn-danger" type="submit" value="Удалить" /></p>
+}
